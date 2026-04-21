@@ -7,20 +7,20 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
-  currency: "USD",
+  currency: "EUR",
 });
 
 export default function SpendingChart({ expensesByCategory }) {
   return (
     <div className="bg-white rounded-xl shadow-md p-6">
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Spending by Category
+        Dépenses par catégorie
       </h2>
       {expensesByCategory.length === 0 ? (
         <div className="flex items-center justify-center h-52 text-gray-400 text-sm">
-          No expense data to display.
+          Aucune donnée de dépenses à afficher.
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={280}>

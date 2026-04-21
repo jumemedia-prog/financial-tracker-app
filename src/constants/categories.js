@@ -1,21 +1,21 @@
 export const CATEGORIES = [
-  "Food",
-  "Rent",
+  "Alimentation",
+  "Loyer",
   "Transport",
-  "Entertainment",
-  "Health",
+  "Loisirs",
+  "Santé",
   "Shopping",
-  "Utilities",
-  "Other",
+  "Services",
+  "Autre",
 ];
 
 export const CATEGORY_COLORS = {
-  Food: "#f97316",
-  Rent: "#8b5cf6",
+  Alimentation: "#f97316",
+  Loyer: "#8b5cf6",
   Transport: "#3b82f6",
-  Entertainment: "#ec4899",
-  Health: "#22c55e",
+  Loisirs: "#ec4899",
+  Santé: "#22c55e",
   Shopping: "#eab308",
-  Utilities: "#06b6d4",
-  Other: "#94a3b8",
+  Services: "#06b6d4",
+  Autre: "#94a3b8",
 };

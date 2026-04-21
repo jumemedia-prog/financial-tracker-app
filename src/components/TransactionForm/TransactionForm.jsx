@@ -7,8 +7,13 @@ const INITIAL_STATE = {
   type: "expense",
   amount: "",
   description: "",
-  category: "Food",
+  category: CATEGORIES[0],
   date: today,
+};
+
+const TYPE_LABELS = {
+  expense: "Dépense",
+  income: "Revenu",
 };
 
 export default function TransactionForm({ onAdd }) {
@@ -24,11 +29,11 @@ export default function TransactionForm({ onAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!form.description.trim()) {
-      setError("Description is required.");
+      setError("La description est requise.");
       return;
     }
     if (!form.amount || parseFloat(form.amount) <= 0) {
-      setError("Amount must be greater than 0.");
+      setError("Le montant doit être supérieur à 0.");
       return;
     }
     onAdd(form);
@@ -40,16 +45,17 @@ export default function TransactionForm({ onAdd }) {
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">Add Transaction</h2>
+      <h2 className="text-lg font-semibold text-gray-800 mb-4">
+        Ajouter une transaction
+      </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        {/* Type toggle */}
         <div className="flex rounded-lg overflow-hidden border border-gray-300">
           {["expense", "income"].map((t) => (
             <button
               key={t}
               type="button"
               onClick={() => setForm((prev) => ({ ...prev, type: t }))}
-              className={`flex-1 py-2 text-sm font-medium capitalize transition-colors ${
+              className={`flex-1 py-2 text-sm font-medium transition-colors ${
                 form.type === t
                   ? t === "income"
                     ? "bg-green-600 text-white"
@@ -57,7 +63,7 @@ export default function TransactionForm({ onAdd }) {
                   : "bg-white text-gray-500 hover:bg-gray-50"
               }`}
             >
-              {t}
+              {TYPE_LABELS[t]}
             </button>
           ))}
         </div>
@@ -74,7 +80,7 @@ export default function TransactionForm({ onAdd }) {
         <input
           name="amount"
           type="number"
-          placeholder="Amount"
+          placeholder="Montant"
           min="0.01"
           step="0.01"
           value={form.amount}
@@ -109,7 +115,7 @@ export default function TransactionForm({ onAdd }) {
           type="submit"
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
         >
-          Add Transaction
+          Ajouter
         </button>
       </form>
     </div>

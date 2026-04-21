@@ -38,6 +38,12 @@ export function useTransactions() {
   const totalExpenses = useMemo(() => getTotalExpenses(transactions), [transactions]);
   const balance = useMemo(() => getBalance(transactions), [transactions]);
   const expensesByCategory = useMemo(() => getExpensesByCategory(transactions), [transactions]);
+  const currentMonthExpenses = useMemo(() => {
+    const monthKey = new Date().toISOString().slice(0, 7);
+    return transactions
+      .filter((t) => t.type === "expense" && t.date.startsWith(monthKey))
+      .reduce((sum, t) => sum + t.amount, 0);
+  }, [transactions]);
 
   return {
     transactions,
@@ -47,5 +53,6 @@ export function useTransactions() {
     totalExpenses,
     balance,
     expensesByCategory,
+    currentMonthExpenses,
   };
 }

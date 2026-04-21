@@ -25,15 +25,31 @@ The `SpendingChart` component (`src/components/Charts/SpendingChart.jsx`) consum
 ## Data Model
 
 ```js
+// Transaction (localStorage key: "budget_tracker_transactions")
 {
   id: string,           // crypto.randomUUID()
   type: "income" | "expense",
   amount: number,       // always positive float
   description: string,
-  category: string,     // one of CATEGORIES
+  category: string,     // one of CATEGORIES (French names)
   date: string,         // ISO date "YYYY-MM-DD"
 }
+
+// Monthly budgets (localStorage key: "budget_tracker_monthly_budgets")
+{ "YYYY-MM": number }   // e.g. { "2026-04": 1500 }
 ```
+
+## Monthly Budget Feature
+
+`src/hooks/useBudget.js` manages per-month budget limits stored in localStorage. It exposes `currentBudget` (the limit for the current month or `null` if unset), `currentMonthKey` ("YYYY-MM"), `setBudgetForMonth`, and `clearBudgetForMonth`.
+
+`src/components/Dashboard/BudgetProgress.jsx` renders either a set-budget form (when `currentBudget === null`) or a progress bar showing current-month expenses vs. the limit. The bar turns yellow at 75% and red when over budget. "Désactiver" calls `onClear` to remove the budget for the month.
+
+`currentMonthExpenses` is derived in `useTransactions` and filters transactions where `date.startsWith(currentMonthKey)` and `type === "expense"`.
+
+## Localisation
+
+The app is fully in French with EUR currency (`fr-FR` locale, `Intl.NumberFormat`). Category names in `constants/categories.js` are in French — these are the values stored in transactions, so any change to category names is a breaking change for existing localStorage data.
 
 ## Git Workflow
 

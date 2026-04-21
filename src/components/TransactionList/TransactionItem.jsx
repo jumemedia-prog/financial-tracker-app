@@ -1,14 +1,14 @@
 import { CATEGORY_COLORS } from "../../constants/categories";
 
-const formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
-  currency: "USD",
+  currency: "EUR",
 });
 
 function formatDate(dateStr) {
-  return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
-    month: "short",
+  return new Date(dateStr + "T00:00:00").toLocaleDateString("fr-FR", {
     day: "numeric",
+    month: "short",
     year: "numeric",
   });
 }
@@ -51,7 +51,7 @@ export default function TransactionItem({ transaction, onDelete }) {
         <button
           onClick={() => onDelete(id)}
           className="text-gray-300 hover:text-red-400 transition-colors text-lg leading-none"
-          aria-label="Delete transaction"
+          aria-label="Supprimer la transaction"
         >
           ×
         </button>

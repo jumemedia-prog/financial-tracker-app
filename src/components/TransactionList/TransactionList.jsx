@@ -1,7 +1,11 @@
 import { useState } from "react";
 import TransactionItem from "./TransactionItem";
 
-const FILTERS = ["All", "Income", "Expense"];
+const FILTERS = [
+  { value: "All", label: "Tout" },
+  { value: "Income", label: "Revenus" },
+  { value: "Expense", label: "Dépenses" },
+];
 
 export default function TransactionList({ transactions, onDelete }) {
   const [filter, setFilter] = useState("All");
@@ -21,15 +25,15 @@ export default function TransactionList({ transactions, onDelete }) {
         <div className="flex rounded-lg overflow-hidden border border-gray-200">
           {FILTERS.map((f) => (
             <button
-              key={f}
-              onClick={() => setFilter(f)}
+              key={f.value}
+              onClick={() => setFilter(f.value)}
               className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                filter === f
+                filter === f.value
                   ? "bg-blue-600 text-white"
                   : "bg-white text-gray-500 hover:bg-gray-50"
               }`}
             >
-              {f}
+              {f.label}
             </button>
           ))}
         </div>
@@ -38,8 +42,8 @@ export default function TransactionList({ transactions, onDelete }) {
       {filtered.length === 0 ? (
         <p className="text-center text-gray-400 text-sm py-8">
           {transactions.length === 0
-            ? "No transactions yet. Add one above."
-            : "No transactions match this filter."}
+            ? "Aucune transaction. Ajoutez-en une ci-dessus."
+            : "Aucune transaction ne correspond à ce filtre."}
         </p>
       ) : (
         <div>
