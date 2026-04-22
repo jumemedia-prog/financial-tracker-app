@@ -25,17 +25,20 @@ export default function App() {
   } = useBudget();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-blue-700 text-white py-5 px-6 shadow-md">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-2xl font-bold tracking-tight">Suivi de budget</h1>
-          <p className="text-blue-200 text-sm mt-0.5">
-            Suivez vos revenus et dépenses
-          </p>
+    <div className="min-h-screen bg-gray-50 antialiased">
+      <header className="bg-gradient-to-r from-blue-700 to-blue-600 text-white py-5 shadow-md">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Suivi de budget</h1>
+            <p className="text-blue-100 text-sm mt-0.5 opacity-90">
+              Suivez vos revenus et dépenses
+            </p>
+          </div>
+          <span className="text-3xl select-none" aria-hidden="true">€</span>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 py-8 flex flex-col gap-6">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col gap-6">
         <Dashboard
           totalIncome={totalIncome}
           totalExpenses={totalExpenses}

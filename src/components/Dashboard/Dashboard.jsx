@@ -20,19 +20,19 @@ export default function Dashboard({
           label="Revenus totaux"
           amount={totalIncome}
           colorClass="text-green-600"
-          icon="💰"
+          icon="↑"
         />
         <SummaryCard
           label="Dépenses totales"
           amount={totalExpenses}
           colorClass="text-red-500"
-          icon="💸"
+          icon="↓"
         />
         <SummaryCard
-          label="Solde"
+          label="Solde actuel"
           amount={balance}
           colorClass={balanceColor}
-          icon="📊"
+          icon="="
         />
       </div>
       <BudgetProgress
